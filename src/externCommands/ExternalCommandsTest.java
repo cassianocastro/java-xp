@@ -7,66 +7,57 @@ import javax.swing.JOptionPane;
 
 /**
  *
+ *
  */
-public class ExternCommandTest
+public class ExternalCommandsTest
 {
 
-    public static void main(String[] args)
+    public void testIntegrationWithPython() throws IOException, InterruptedException
     {
-        /*
-        try
+        int valor1 = Integer.parseInt(JOptionPane.showInputDialog("Primeiro valor:"));
+        int valor2 = Integer.parseInt(JOptionPane.showInputDialog("Segundo valor:"));
+
+        Process exec = Runtime.getRuntime().exec(
+            "python3 src/lib/test.py"
+        );
+        OutputStream output = exec.getOutputStream();
+
+        PrintWriter writer = new PrintWriter(output);
+        writer.println(valor1);
+        writer.println(valor2);
+        writer.flush();
+
+        Scanner scanner = new Scanner(exec.getInputStream());
+
+        while ( scanner.hasNext() )
         {
-            String comando = "ls -loha /home/cassiano/Downloads/";
-            Process exec   = Runtime.getRuntime().exec(comando);
-
-            InputStream input     = exec.getInputStream();
-            Scanner scanner       = new Scanner(input);
-            StringBuilder builder = new StringBuilder();
-
-            while( scanner.hasNext() )
-            {
-                // System.out.println( scanner.nextLine() );
-                builder.append(scanner.nextLine());
-                builder.append("\n");
-            }
-            JOptionPane.showMessageDialog(null, builder);
-
-
-            String comando = "python3 /home/cassiano/Documentos/Arquivos_Py/teste.py";
-            Process exec   = Runtime.getRuntime().exec(comando);
-
-            OutputStream output = exec.getOutputStream();
-            PrintWriter writer  = new PrintWriter(output);
-
-            int valor1 = Integer.parseInt(JOptionPane.showInputDialog("Primeiro valor:"));
-            int valor2 = Integer.parseInt(JOptionPane.showInputDialog("Segundo valor:"));
-
-
-            writer.println(valor1);
-            writer.println(valor2);
-            writer.flush();
-
-            InputStream input = exec.getInputStream();
-            Scanner scanner   = new Scanner(input);
-
-            while ( scanner.hasNext() )
-            {
-                System.out.println(scanner.nextLine());
-            }
-
-            if ( exec.waitFor() == 0 )
-                System.out.println("Processo concluido.");
-        } catch(IOException | InterruptedException e)
-        {
-            System.out.println(e.getMessage());
+            System.out.println(scanner.nextLine());
         }
-        */
-        foo();
+
+        if ( exec.waitFor() == 0 )
+            System.out.println("Processo concluido.");
     }
 
-    public static void foo()
+    public String testLinuxLsCommand() throws IOException
     {
-        String pathName = "src/frames/imagens/";
+        Process exec = Runtime.getRuntime().exec(
+            "ls -loha /home/cassiano/Downloads/"
+        );
+        InputStream input     = exec.getInputStream();
+        Scanner scanner       = new Scanner(input);
+        StringBuilder builder = new StringBuilder();
+
+        while( scanner.hasNext() )
+        {
+            builder.append(scanner.nextLine()).append("\n");
+        }
+
+        return builder.toString();
+    }
+
+    public void foo()
+    {
+        String pathName = "src/lib/img/";
         String[] names  = new File(pathName).list();
         String withoutExtension;
 

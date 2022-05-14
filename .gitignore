@@ -1,3 +1,2 @@
-#src/org/json
 build/
-lib/MYSQL
+src/lib/db.sqlite

@@ -1,37 +1,33 @@
-package sockets;
+package sockets.client;
 
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 /**
+ *
  *
  */
 public class Client
 {
 
-    public static void main(String[] args)
+    public void init() throws IOException
     {
-        try
+        Socket client = new Socket("127.0.0.1", 12345);
+
+        this.writeToServer(new PrintStream(client.getOutputStream()));
+
+        client.close();
+    }
+
+    private void writeToServer(PrintStream stream) throws IOException
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        while ( scanner.hasNextLine() )
         {
-            Socket cliente = new Socket("127.0.0.1", 12345);
-            JOptionPane.showMessageDialog(null, "Cliente conectado ao servidor.");
-
-            Scanner scanner    = new Scanner(System.in);
-            PrintStream stream = new PrintStream(cliente.getOutputStream());
-
-            new ObjectOutputStream(cliente.getOutputStream()).writeObject(args);
-
-            while ( scanner.hasNextLine() )
-            {
-                stream.println(scanner.nextLine());
-            }
-            stream.close();
-            scanner.close();
-        } catch (IOException e)
-        {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            stream.println(scanner.nextLine());
         }
+        scanner.close();
     }
 }

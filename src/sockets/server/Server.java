@@ -1,40 +1,44 @@
-package sockets;
+package sockets.server;
 
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 /**
  *
+ *
  */
-public class Sockets
+public class Server
 {
 
-    public static void main(String[] args)
+    private final int port;
+
+    public Server(int port)
     {
-        try (ServerSocket server = new ServerSocket(12345))
+        this.port = port;
+    }
+
+    public void init() throws IOException
+    {
+        ServerSocket server = new ServerSocket(this.port);
+
+        while ( true )
         {
-            JOptionPane.showMessageDialog(null, "Porta 12345 aberta.");
-            Socket cliente = server.accept();
-
-            JOptionPane.showMessageDialog(
-                null,
-                "Nova conexão com o cliente "
-                + cliente.getInetAddress().getHostAddress()
-            );
-
-            Scanner scanner = new Scanner(cliente.getInputStream());
-
-            while ( scanner.hasNextLine() )
-            {
-                // System.out.println(scanner.nextLine());
-                JOptionPane.showMessageDialog(null, scanner.nextLine());
-            }
-            scanner.close();
-        } catch (IOException e)
-        {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            Socket client = server.accept();
+            this.listenInputFrom(client);
         }
+    }
+
+    private void listenInputFrom(Socket client) throws IOException
+    {
+        Scanner scanner = new Scanner(client.getInputStream());
+
+        while ( scanner.hasNextLine() )
+        {
+            System.out.println(
+                client.getInetAddress().getHostAddress() + ": " + scanner.nextLine()
+            );
+        }
+        scanner.close();
     }
 }

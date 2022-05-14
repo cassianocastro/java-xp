@@ -1,47 +1,51 @@
 package dataBaseIntegration;
-import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
+
 /**
- * @author cassiano
+ *
+ *
  */
-public class Contato {
-    private Long ID;
-    private String nome, email, endereco;
-    private Calendar data_nascimento;
-    
-    public Contato( Long ID, String nome, String email, String endereco, Calendar data_nascimento ){
-        this.ID              = ID;
-        this.nome            = nome;
-        this.email           = email;
-        this.endereco        = endereco;
-        this.data_nascimento = data_nascimento;
+public class Contact
+{
+
+    private final Long id;
+    private final String name;
+    private final String email;
+    private final String address;
+    private final Calendar birthDate;
+
+    public Contact(Long id, String name, String email, String address, Calendar birthDate)
+    {
+        this.id        = id;
+        this.name      = name;
+        this.email     = email;
+        this.address   = address;
+        this.birthDate = birthDate;
     }
-    public Long getID(){
-        return this.ID;
+
+    public Long getID()
+    {
+        return this.id;
     }
-    
-    public String getNome() {
-        return this.nome;
+
+    public String getName()
+    {
+        return this.name;
     }
-    
-    public String getEmail() {
+
+    public String getEmail()
+    {
         return this.email;
     }
-    
-    public String getEndereco() {
-        return this.endereco;
+
+    public String getAddress()
+    {
+        return this.address;
     }
-    
-    public Calendar getData_nascimento() {
-        return this.data_nascimento;
-    }
-    
-    public String getDados(){
-        return  "\nID: "                 + this.ID +
-                "\nNome: "               + this.nome +
-                "\nE-mail: "             + this.email +
-                "\nEndereço: "           + this.endereco +
-                "\nData de Nascimento: " + new SimpleDateFormat("dd/MM/yyyy")
-                                        .format(this.data_nascimento.getTime());
+
+    public Calendar getBirthDate()
+    {
+        return this.birthDate;
     }
 }

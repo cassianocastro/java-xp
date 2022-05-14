@@ -1,32 +1,44 @@
 package frames;
+
 import java.text.ParseException;
 import javax.swing.*;
 import javax.swing.text.*;
 
-public class ExampleJFormattedTextField extends JFrame{
-    
-    public ExampleJFormattedTextField(){
+/**
+ *
+ */
+public class ExampleJFormattedTextField extends JFrame
+{
+
+    public ExampleJFormattedTextField()
+    {
         super.setContentPane( new Pane() );
         super.setBounds( 400, 200, 400, 250 );
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setVisible(true);
     }
-    
-    private class Pane extends JPanel{
+
+    private class Pane extends JPanel
+    {
+
         private final JLabel labelCEP, labelTEL, labelCPF, labelDATA;
         private JFormattedTextField CEP, CPF, TEL, DATA;
-        
-        protected Pane(){
+
+        protected Pane()
+        {
             super.setLayout(null);
-            try {
+            try
+            {
                 this.CEP  = new JFormattedTextField( new MaskFormatter("#####-###") );
                 this.TEL  = new JFormattedTextField( new MaskFormatter("(##)#####-####") );
                 this.CPF  = new JFormattedTextField( new MaskFormatter("###.###.###-##") );
                 this.DATA = new JFormattedTextField( new MaskFormatter("##/##/####") );
-            } catch( ParseException e ){
+            } catch( ParseException e )
+            {
                 System.err.println( e.getMessage() );
                 System.exit(0);
             }
+            
             this.labelCEP  = new JLabel("CEP:");
             this.labelTEL  = new JLabel("Telefone:");
             this.labelCPF  = new JLabel("CPF:");

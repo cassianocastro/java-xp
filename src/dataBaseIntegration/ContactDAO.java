@@ -7,106 +7,97 @@ import java.util.List;
 
 /**
  *
- * @author cassiano
  */
-public class ContatoDao {
+public class ContactDAO
+{
 
-    private Connection connection;
+    private final Connection connection;
 
-    public ContatoDao(Connection connection) {
+    public ContactDAO(Connection connection)
+    {
         this.connection = connection;
     }
 
-    public void create(Contato contato) {
-        String sql = "INSERT INTO contatos "
-                + "( nome, email, endereco, data_nascimento )"
-                + "values"
-                + "( ?, ?, ?, ? )";
-        try (PreparedStatement statement = this.connection.prepareStatement(sql))
-        {
-            statement.setString(1, contato.getNome());
-            statement.setString(2, contato.getEmail());
-            statement.setString(3, contato.getEndereco());
-            statement.setDate  (4, new Date(contato.getData_nascimento().getTimeInMillis()));
-            statement.execute  ();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public void insert(Contact contact) throws SQLException
+    {
+        PreparedStatement statement = this.connection.prepareStatement(
+            "INSERT INTO contact(name, email, address, birthDate) VALUES (?, ?, ?, ?)"
+        );
+        statement.setString(1, contact.getName());
+        statement.setString(2, contact.getEmail());
+        statement.setString(3, contact.getAddress());
+        statement.setDate(4, new Date(contact.getBirthDate().getTimeInMillis()));
+
+        statement.execute();
     }
 
-    public List read() {
-        List<Contato> lista = new ArrayList<>();
-        String sql = "SELECT * FROM contatos";
-        try ( PreparedStatement statement = this.connection.prepareStatement(sql);
-              ResultSet resultSet = statement.executeQuery())
-        {  
-            while (resultSet.next()) {
-                Long id            = resultSet.getLong("id");
-                String nome        = resultSet.getString("nome");
-                String email       = resultSet.getString("email");
-                String endereco    = resultSet.getString("endereco");
-                Calendar data_nasc = Calendar.getInstance();
-                data_nasc.setTime(resultSet.getDate("data_nascimento"));
+    public List read() throws SQLException
+    {
+        PreparedStatement statement = this.connection.prepareStatement(
+            "SELECT id, name, email, address, birthDate FROM contact"
+        );
+        ResultSet rs = statement.executeQuery();
+        List<Contact> list = new ArrayList<>();
 
-                lista.add( new Contato(id, nome, email, endereco, data_nasc) );
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        while ( rs.next() )
+        {
+            Long id            = rs.getLong("id");
+            String name        = rs.getString("name");
+            String email       = rs.getString("email");
+            String address     = rs.getString("address");
+            Calendar birthDate = Calendar.getInstance();
+            birthDate.setTime(rs.getDate("birthDate"));
+
+            list.add(new Contact(id, name, email, address, birthDate));
         }
-        return lista;
+
+        return list;
     }
 
-    public Contato search(Long ID_requisitado) {
-        String sql = "SELECT * FROM contatos where id = ?";
-        try (PreparedStatement statement = this.connection.prepareStatement(sql))
+    public Contact findByID(Long ID) throws SQLException
+    {
+        PreparedStatement statement = this.connection.prepareStatement(
+            "SELECT id, name, email, address, birthDate FROM contact WHERE id = ?"
+        );
+        statement.setString(1, ID.toString());
+        ResultSet rs = statement.executeQuery();
+
+        if ( rs.next() )
         {
-            statement.setString(1, ID_requisitado.toString());
+            Long id            = rs.getLong("id");
+            String name        = rs.getString("name");
+            String email       = rs.getString("email");
+            String address     = rs.getString("address");
+            Calendar birthDate = Calendar.getInstance();
+            birthDate.setTime(rs.getDate("birthDate"));
 
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Long id            = resultSet.getLong("id");
-                String nome        = resultSet.getString("nome");
-                String email       = resultSet.getString("email");
-                String endereco    = resultSet.getString("endereco");
-                Calendar data_nasc = Calendar.getInstance();
-                data_nasc.setTime(resultSet.getDate("data_nascimento"));
-
-                return new Contato(id, nome, email, endereco, data_nasc);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return new Contact(id, name, email, address, birthDate);
         }
-        return null;
+
+        throw new SQLException("Contact not found!");
     }
 
-    public void update(Contato contato) {
-        String sql  = "UPDATE contatos SET "
-                    + "nome = ?, "
-                    + "email = ?, "
-                    + "endereco = ?, "
-                    + "data_nascimento = ? "
-                    + "where id = ?";
-        try (PreparedStatement statement = this.connection.prepareStatement(sql))
-        {
-            statement.setString(1, contato.getNome());
-            statement.setString(2, contato.getEmail());
-            statement.setString(3, contato.getEndereco());
-            statement.setDate  (4, new Date(contato.getData_nascimento().getTimeInMillis()));
-            statement.setLong  (5, contato.getID());
-            statement.execute  ();
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public void update(Contact contact) throws SQLException
+    {
+        PreparedStatement statement = this.connection.prepareStatement(
+            "UPDATE contact SET name = ?, email = ?, address = ?, birthDate = ? WHERE id = ?"
+        );
+        statement.setString(1, contact.getName());
+        statement.setString(2, contact.getEmail());
+        statement.setString(3, contact.getAddress());
+        statement.setDate(4, new Date(contact.getBirthDate().getTimeInMillis()));
+        statement.setLong(5, contact.getID());
+
+        statement.execute();
     }
 
-    public void delete(Contato contato) {
-        String sql = "DELETE * FROM contatos WHERE id = ?";
-        try (PreparedStatement statement = this.connection.prepareStatement(sql))
-        {
-            statement.setLong(1, contato.getID());
-            statement.execute();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public void delete(Contact contact) throws SQLException
+    {
+        PreparedStatement statement = this.connection.prepareStatement(
+            "DELETE FROM contact WHERE id = ?"
+        );
+        statement.setLong(1, contact.getID());
+
+        statement.execute();
     }
 }

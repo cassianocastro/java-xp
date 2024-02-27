@@ -208,7 +208,7 @@ public class Frame1 extends JFrame
         public void actionPerformed(ActionEvent e)
         {
             Object source = e.getSource();
-            
+
             if ( source == this.button )
             {
                 String item = this.comboBox.getSelectedItem().toString();

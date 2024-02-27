@@ -38,7 +38,7 @@ public class ExampleJFormattedTextField extends JFrame
                 System.err.println( e.getMessage() );
                 System.exit(0);
             }
-            
+
             this.labelCEP  = new JLabel("CEP:");
             this.labelTEL  = new JLabel("Telefone:");
             this.labelCPF  = new JLabel("CPF:");

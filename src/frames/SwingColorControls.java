@@ -52,7 +52,5 @@ public class SwingColorControls extends JPanel implements ActionListener, FocusL
     }
 
     @Override
-    public void focusLost(FocusEvent e)
-    {
-    }
+    public void focusLost(FocusEvent e) {}
 }

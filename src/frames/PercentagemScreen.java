@@ -7,7 +7,6 @@ import javax.swing.*;
 
 /**
  *
- * 
  */
 public class PercentagemScreen extends JFrame
 {

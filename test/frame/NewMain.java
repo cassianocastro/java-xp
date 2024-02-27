@@ -4,6 +4,9 @@ import java.io.*;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ */
 public class NewMain
 {
 
@@ -40,7 +43,7 @@ public class NewMain
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
-        
+
         // Teste teste = new Teste();
         /*
             new Thread(() ->{

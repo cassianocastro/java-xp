@@ -15,6 +15,7 @@ public class Test extends JFrame
     public Test()
     {
         super("Test");
+
         super.setSize(300, 100);
         super.setResizable(false);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -18,6 +18,7 @@ public class SwingColorTest extends JFrame
 
         this.panel  = new JPanel(new GridLayout(1, 3, 5, 15));
         this.panel2 = new JPanel();
+
         this.RGBcontrols = new SwingColorControls(this, "Red", "Green", "Blue");
         this.HSBcontrols = new SwingColorControls(this, "Hue", "Saturation", "Brightness");
 
@@ -45,7 +46,8 @@ public class SwingColorTest extends JFrame
         {
             c = new Color(valor1, valor2, valor3);
 
-            float[] HSB = Color.RGBtoHSB(valor1, valor2, valor3, ( new float[3] ));
+            float[] HSB = Color.RGBtoHSB(valor1, valor2, valor3, (new float[3]));
+
             HSB[0] *= 360;
             HSB[1] *= 100;
             HSB[2] *= 100;
@@ -53,17 +55,20 @@ public class SwingColorTest extends JFrame
             this.HSBcontrols.textFields[0].setText(String.valueOf((int) HSB[0]));
             this.HSBcontrols.textFields[1].setText(String.valueOf((int) HSB[1]));
             this.HSBcontrols.textFields[2].setText(String.valueOf((int) HSB[2]));
-        } else
+        }
+        else
         {
             c = Color.getHSBColor(
                 (float) valor1 / 360,
                 (float) valor2 / 100,
                 (float) valor3 / 100
             );
+
             this.RGBcontrols.textFields[0].setText(String.valueOf(c.getRed()));
             this.RGBcontrols.textFields[1].setText(String.valueOf(c.getGreen()));
             this.RGBcontrols.textFields[2].setText(String.valueOf(c.getBlue()));
         }
+
         this.panel2.setBackground(c);
         this.panel2.repaint();
     }

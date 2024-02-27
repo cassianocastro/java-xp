@@ -99,6 +99,7 @@ public class PercentagemScreen extends JFrame
                 this.group.add(this.radios[i]);
                 super.add(this.radios[i]);
             }
+
             this.radios[0].setSelected(true);
         }
 
@@ -120,16 +121,19 @@ public class PercentagemScreen extends JFrame
                 if ( this.radios[0].isSelected() )
                 {
                     result = N1.multiply(new BigDecimal("0.1"));
-                } else if ( this.radios[1].isSelected() )
+                }
+                else if ( this.radios[1].isSelected() )
                 {
                     result = N1.multiply(new BigDecimal("0.2"));
-                } else
+                }
+                else
                 {
                     result = N1.multiply(new BigDecimal("0.3"));
                 }
 
                 this.p.setResult(result.toString());
-            } catch (NumberFormatException e)
+            }
+            catch ( NumberFormatException e )
             {
                 this.p.setResult("Error");
             }

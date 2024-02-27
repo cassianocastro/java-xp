@@ -58,7 +58,7 @@ public class TestandoIcones extends JFrame
         public void actionPerformed(ActionEvent e)
         {
             Object source = e.getSource();
-            
+
             if ( source == this.buttonCroissant )
                 JOptionPane.showMessageDialog(rootPane, "A opção foi " + this.buttonCroissant.getText());
             else if ( source == this.buttonIceCream )

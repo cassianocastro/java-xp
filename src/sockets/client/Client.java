@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 /**
  *
- *
  */
 public class Client
 {
@@ -28,6 +27,7 @@ public class Client
         {
             stream.println(scanner.nextLine());
         }
+
         scanner.close();
     }
 }

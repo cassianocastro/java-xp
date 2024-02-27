@@ -15,6 +15,7 @@ public class IconManager
     public IconManager()
     {
         this.map = new HashMap<>();
+
         this.map.put("croissant", new ImageIcon(getClass().getResource("src/lib/img/croissant.png")));
         this.map.put("ice-cream", new ImageIcon(getClass().getResource("src/lib/img/ice-cream.png")));
         this.map.put("panettone", new ImageIcon(getClass().getResource("src/lib/img/panettone.png")));

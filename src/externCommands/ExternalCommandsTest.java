@@ -17,12 +17,11 @@ public class ExternalCommandsTest
         int valor1 = Integer.parseInt(JOptionPane.showInputDialog("Primeiro valor:"));
         int valor2 = Integer.parseInt(JOptionPane.showInputDialog("Segundo valor:"));
 
-        Process exec = Runtime.getRuntime().exec(
-            "python3 src/lib/test.py"
-        );
+        Process exec = Runtime.getRuntime().exec("python3 src/lib/test.py");
         OutputStream output = exec.getOutputStream();
 
         PrintWriter writer = new PrintWriter(output);
+
         writer.println(valor1);
         writer.println(valor2);
         writer.flush();
@@ -35,19 +34,20 @@ public class ExternalCommandsTest
         }
 
         if ( exec.waitFor() == 0 )
+        {
             System.out.println("Processo concluido.");
+        }
     }
 
     public String testLinuxLsCommand() throws IOException
     {
-        Process exec = Runtime.getRuntime().exec(
-            "ls -loha /home/cassiano/Downloads/"
-        );
+        Process exec = Runtime.getRuntime().exec("ls -loha /home/cassiano/Downloads/");
+
         InputStream input     = exec.getInputStream();
         Scanner scanner       = new Scanner(input);
         StringBuilder builder = new StringBuilder();
 
-        while( scanner.hasNext() )
+        while ( scanner.hasNext() )
         {
             builder.append(scanner.nextLine()).append("\n");
         }
@@ -66,6 +66,7 @@ public class ExternalCommandsTest
         for ( String name : names )
         {
             withoutExtension = name.substring(0, name.indexOf("."));
+
             map.put(withoutExtension, new ImageIcon(pathName + name));
         }
 

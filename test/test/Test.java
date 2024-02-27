@@ -18,5 +18,4 @@ public class Test
     {
         Frame2 frame2 = new Frame2();
     }
-
 }

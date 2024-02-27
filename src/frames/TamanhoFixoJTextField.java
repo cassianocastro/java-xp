@@ -13,6 +13,7 @@ public class TamanhoFixoJTextField extends PlainDocument
     public TamanhoFixoJTextField(int tamMax)
     {
         super();
+
         this.tamMax = tamMax;
     }
 
@@ -28,13 +29,16 @@ public class TamanhoFixoJTextField extends PlainDocument
         if ( this.tamMax <= 0 )
         {
             super.insertString(offset, str, attr);
+
             return;
         }
+
         int tam = ( getLength() + str.length() );
 
         if ( tam <= this.tamMax )
         {
             super.insertString(offset, str, attr);
+
             return;
         }
 
@@ -42,7 +46,9 @@ public class TamanhoFixoJTextField extends PlainDocument
         {
             return;
         }
-        String novaStr = str.substring(0, ( this.tamMax - getLength() ));
+
+        String novaStr = str.substring(0, (this.tamMax - getLength()));
+
         super.insertString(offset, novaStr, attr);
     }
 }

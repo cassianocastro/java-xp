@@ -23,9 +23,11 @@ public class SwingColorControls extends JPanel implements ActionListener, FocusL
         for ( JTextField textField : this.textFields )
         {
             textField = new JTextField("0");
+
             textField.addFocusListener(this);
             textField.addActionListener(this);
         }
+
         super.add(new JLabel(a, JLabel.RIGHT));
         super.add(this.textFields[0]);
 

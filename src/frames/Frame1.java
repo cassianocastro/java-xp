@@ -37,7 +37,8 @@ public class Frame1 extends JFrame
         try
         {
             UIManager.setLookAndFeel(UIManager.createLookAndFeel("Nimbus"));
-        } catch (UnsupportedLookAndFeelException e)
+        }
+        catch ( UnsupportedLookAndFeelException e )
         {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
@@ -50,6 +51,7 @@ public class Frame1 extends JFrame
             msg.append(look);
             msg.append("\n");
         }
+
         JOptionPane.showMessageDialog(rootPane, msg);
     }
 
@@ -150,8 +152,10 @@ public class Frame1 extends JFrame
             if ( source == this.scrollBar )
             {
                 String novoValor = String.valueOf(this.scrollBar.getValue());
+
                 this.textfield.setText(novoValor);
             }
+
             repaint();
         }
     }
@@ -199,8 +203,10 @@ public class Frame1 extends JFrame
             if ( source == this.comboBox )
             {
                 Object novo_pick = e.getItem();
+
                 this.textField.setText(novo_pick.toString() + " foi selecionado.");
             }
+
             repaint();
         }
 
@@ -212,8 +218,10 @@ public class Frame1 extends JFrame
             if ( source == this.button )
             {
                 String item = this.comboBox.getSelectedItem().toString();
+
                 this.textField.setText(item + " foi selecionado.");
             }
+
             repaint();
         }
     }

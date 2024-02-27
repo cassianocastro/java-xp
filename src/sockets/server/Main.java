@@ -16,7 +16,8 @@ public class Main
         try
         {
             new Server(12345).init();
-        } catch (IOException e)
+        }
+        catch ( IOException e )
         {
             System.out.println(e.getMessage());
         }

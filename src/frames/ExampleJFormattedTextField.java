@@ -12,8 +12,8 @@ public class ExampleJFormattedTextField extends JFrame
 
     public ExampleJFormattedTextField()
     {
-        super.setContentPane( new Pane() );
-        super.setBounds( 400, 200, 400, 250 );
+        super.setContentPane(new Pane());
+        super.setBounds(400, 200, 400, 250);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setVisible(true);
     }
@@ -27,15 +27,18 @@ public class ExampleJFormattedTextField extends JFrame
         protected Pane()
         {
             super.setLayout(null);
+
             try
             {
-                this.CEP  = new JFormattedTextField( new MaskFormatter("#####-###") );
-                this.TEL  = new JFormattedTextField( new MaskFormatter("(##)#####-####") );
-                this.CPF  = new JFormattedTextField( new MaskFormatter("###.###.###-##") );
-                this.DATA = new JFormattedTextField( new MaskFormatter("##/##/####") );
-            } catch( ParseException e )
+                this.CEP  = new JFormattedTextField(new MaskFormatter("#####-###"));
+                this.TEL  = new JFormattedTextField(new MaskFormatter("(##)#####-####"));
+                this.CPF  = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+                this.DATA = new JFormattedTextField(new MaskFormatter("##/##/####"));
+            }
+            catch ( ParseException e )
             {
-                System.err.println( e.getMessage() );
+                System.err.println(e.getMessage());
+
                 System.exit(0);
             }
 
@@ -49,10 +52,10 @@ public class ExampleJFormattedTextField extends JFrame
             this.labelCPF .setBounds(85, 100, 100, 20);
             this.labelDATA.setBounds(77, 130, 100, 20);
 
-            this.CEP .setBounds (130, 40, 120, 20);
-            this.TEL .setBounds (130, 70, 120, 20);
-            this.CPF .setBounds (130, 100, 120, 20);
-            this.DATA.setBounds (130, 130, 120, 20);
+            this.CEP .setBounds(130, 40, 120, 20);
+            this.TEL .setBounds(130, 70, 120, 20);
+            this.CPF .setBounds(130, 100, 120, 20);
+            this.DATA.setBounds(130, 130, 120, 20);
 
             super.add(this.labelCEP);
             super.add(this.labelTEL);

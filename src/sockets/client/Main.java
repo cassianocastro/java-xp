@@ -16,8 +16,10 @@ public class Main
         try
         {
             new Client().init();
+
             System.out.println("Client connected to server.");
-        } catch (IOException e)
+        }
+        catch ( IOException e )
         {
             System.out.println(e.getMessage());
         }

@@ -19,6 +19,7 @@ public class NewMain
         if ( chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION )
         {
             String file = chooser.getSelectedFile().getAbsolutePath();
+
             try (BufferedReader reader
                 = new BufferedReader(
                     new FileReader(file)))
@@ -26,6 +27,7 @@ public class NewMain
                 while ( true )
                 {
                     String line = reader.readLine();
+
                     if ( line == null )
                     {
                         throw new EOFException("Fim de arquivo");
@@ -33,7 +35,8 @@ public class NewMain
 
                     System.out.println(line);
                 }
-            } catch (IOException e)
+            }
+            catch ( IOException e )
             {
                 System.out.println(e.getMessage());
             }

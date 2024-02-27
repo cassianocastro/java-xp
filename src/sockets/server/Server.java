@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 /**
  *
- *
  */
 public class Server
 {
@@ -25,6 +24,7 @@ public class Server
         while ( true )
         {
             Socket client = server.accept();
+
             this.listenInputFrom(client);
         }
     }
@@ -39,6 +39,7 @@ public class Server
                 client.getInetAddress().getHostAddress() + ": " + scanner.nextLine()
             );
         }
+
         scanner.close();
     }
 }

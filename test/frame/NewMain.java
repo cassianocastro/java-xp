@@ -20,6 +20,7 @@ public class NewMain
         if ( chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION )
         {
             String file = chooser.getSelectedFile().getAbsolutePath();
+
             try (BufferedReader reader
                 = new BufferedReader(
                     new FileReader(file)))
@@ -35,10 +36,12 @@ public class NewMain
 
                     System.out.println(line);
                 }
-            } catch (EOFException e)
+            }
+            catch ( EOFException e )
             {
                 System.out.println(e.getMessage());
-            } catch (IOException e)
+            }
+            catch ( IOException e )
             {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }

@@ -16,7 +16,8 @@ public class Main
         try
         {
             new ExternalCommandsTest().testIntegrationWithPython();
-        } catch(IOException | InterruptedException e)
+        }
+        catch ( IOException | InterruptedException e )
         {
             System.out.println(e.getMessage());
         }

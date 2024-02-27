@@ -16,7 +16,8 @@ public class Frame1 extends javax.swing.JFrame
      */
     public Frame1()
     {
-        initComponents();
+        this.initComponents();
+
         super.setVisible(true);
     }
 
@@ -27,8 +28,8 @@ public class Frame1 extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
+    private void initComponents()
+    {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

@@ -28,9 +28,11 @@ public class Cliente
             {
                 stream.println(scanner.nextLine());
             }
+
             stream.close();
             scanner.close();
-        } catch (IOException e)
+        }
+        catch ( IOException e )
         {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

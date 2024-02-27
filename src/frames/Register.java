@@ -19,6 +19,7 @@ public class Register extends JFrame
         super("Novo Cadastro");
 
         this.layout = new GridLayout(4, 1);
+
         RootPanel p = new RootPanel(this.layout);
 
         super.setContentPane(p);
@@ -101,7 +102,8 @@ public class Register extends JFrame
                 this.fields[0] = new JFormattedTextField(new MaskFormatter());
                 this.fields[1] = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
                 this.fields[2] = new JFormattedTextField(new MaskFormatter("##/##/####"));
-            } catch (ParseException e)
+            }
+            catch ( ParseException e )
             {
                 throw new RuntimeException(e);
             }
@@ -111,6 +113,7 @@ public class Register extends JFrame
                 field.setColumns(20);
                 super.add(field);
             }
+
             super.add(this.combo);
         }
     }

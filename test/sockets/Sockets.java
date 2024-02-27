@@ -31,8 +31,10 @@ public class Sockets
                 // System.out.println(scanner.nextLine());
                 JOptionPane.showMessageDialog(null, scanner.nextLine());
             }
+
             scanner.close();
-        } catch (IOException e)
+        }
+        catch ( IOException e )
         {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

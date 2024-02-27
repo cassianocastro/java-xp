@@ -1,2 +1,6 @@
 build/
-src/lib/db.sqlite
+nbproject/
+
+*.xml
+*.form
+*.sqlite

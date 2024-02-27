@@ -7,7 +7,7 @@ public class Main
 {
 
     /**
-     * @param args
+     * @param args the command line arguments
      */
     public static void main(String[] args)
     {
@@ -21,5 +21,4 @@ public class Main
 //        OK new Test();
 //        OK new TestandoJTextField();
     }
-
 }

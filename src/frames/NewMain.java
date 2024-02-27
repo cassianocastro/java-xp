@@ -2,8 +2,10 @@ package frames;
 
 import java.io.*;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
+/**
+ *
+ */
 public class NewMain
 {
 
@@ -31,15 +33,12 @@ public class NewMain
 
                     System.out.println(line);
                 }
-            } catch (EOFException e)
-            {
-                System.out.println(e.getMessage());
             } catch (IOException e)
             {
-                JOptionPane.showMessageDialog(null, e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
-        
+
         // Teste teste = new Teste();
         /*
             new Thread(() ->{
